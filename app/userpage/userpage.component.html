@@ -1,0 +1,123 @@
+
+<body>
+    <header>
+        <div class="col-md-12 container">
+            <div class=" row d-flex align-items-center" style="justify-content: space-between;">
+                <div class="d-flex align-items-center">
+                   
+                        <a class="Header-Title" routerLink='../home'>Blofolio</a>
+                
+                </div>
+                <div class="d-flex align-items-center">
+                    <a style="background: none; height: 50px; width: 50px;" routerLink='/userpage'>
+                        <img [ngStyle]="{'opacity': isloggin ? '1' : '0.3' }" src='https://storage.cloud.google.com/blofolio.appspot.com/image/beta.png' style="height: 50px; width: 50px; opacity:1;" />
+                    </a>
+                </div>
+                <div [ngSwitch]="isloggin" class="d-flex align-items-center">
+                    <a class="Header-LogIn" *ngSwitchCase= "'true'"   routerLink='../logout' >Log out</a>
+                    <a class="Header-LogIn"  *ngSwitchCase="'false'"  routerLink='../login'>Log in</a>  
+                    <a class="Header-LogIn"  *ngSwitchCase="null"  routerLink='../login'>Log in</a> 
+            </div>
+            </div>
+        </div>
+    </header>
+<section>
+    <div class="wrap">
+    <form >
+        <div class="jumbotron row" style=" position: relative;">
+
+<!-- ***************************** image and information *****************************-->
+                <div class="col-md-4 about-text ">
+                    <div>
+                        <div class="center">
+                            <img class="rounded-circle profile-image center" id="prof-picture" alt="picture"
+                                src="https://via.placeholder.com/150">
+                        </div>
+                        <div >
+                            <button type="button" style="display: block;" id="trash-delete" class="btn btn-light "> 
+                                <i class="fas fa-trash-alt"></i>
+                            </button>
+                            <input 
+                            type="file" name="image" id="profile-select" accept="image/*"  class="text-align-middle" >
+                        </div>
+                    </div>
+                    <!-- <h4>Info</h4> -->
+                    <!-- <ul class="list-group list-group-flush">
+                        <li class="list-group-item  text-left"><p>{{response.name}}</p></li>
+                        <li class="list-group-item col-md-12 text-left">{{response.email}}</li>
+                    </ul> -->
+
+                </div>
+           
+<!-- ***************************** Blog Description *****************************-->
+
+                <div class="col-md-4 about-text ">
+                    <h4>Blog description</h4>
+                    <textarea 
+                    name="discp" 
+                    class="edit-profile-text" id="discp" 
+                    rows="10"
+                    ngDefaultControl ></textarea>
+                </div>
+
+<!-- ***************************** About me *****************************-->
+
+                <div class="col-md-4 about-text">
+                    <h4>About me</h4>
+                    <textarea  
+                     name ="about" 
+                    class="edit-profile-text" id="about"
+                    rows="8" 
+                    ngDefaultControl ></textarea>
+                </div>
+<!-- ***************************** Btn save and edit *****************************-->
+                <input type="submit" id="btnsave" class="btn btn-light"
+                    style="position: absolute; right: 10px; bottom: 10px;" name="save" value="save" />
+
+            </div>
+        </form>
+
+
+<!-- ***************************** Your post *****************************-->
+
+        <form #orderForm="ngForm" (ngSubmit) ="getPost(orderForm.value)" class="container">
+            <h2 class="text-center mt-4 mb-4">write Post</h2>
+         
+         <input  [(ngModel)]="postModel.email"  
+         required  
+         #email="ngModel"  ngDefaultControl  name = "email"  style ="display: none;">
+         <input  [(ngModel)]="postModel.date"  
+         required  
+         #date="ngModel"  ngDefaultControl  name = "date"  style ="display: none;">
+         <input
+         [(ngModel)]="postModel.title"  
+         required  
+         #title="ngModel"  ngDefaultControl 
+          placeholder="Title" name = "title" type = "text" class="col-md-12 form-control"/>
+         <input 
+         [(ngModel)]="postModel.subtitle"  
+         required  
+         #subtitle="ngModel"  ngDefaultControl 
+         placeholder="subtitle"  name = "subtitle" type ="text" class="col-md-12 form-control"/>
+         <input 
+          [(ngModel)]="postModel.imageURL"  
+         required  
+         #imageURL="ngModel"  ngDefaultControl 
+         placeholder="imageURL" name="imageURL" type ="text" class="col-md-12 form-control"/>
+         <textarea 
+         [(ngModel)]="postModel.text"  
+         required  
+         #text="ngModel"  ngDefaultControl 
+         name= "text"
+         placeholder="Write text" type ="text" class="col-md-12 form-control" style =" height: 500px;"></textarea>
+        <input
+         type="submit"  name = "text" class="btn btn-block btn-secondary mt-2 mb-5" value="submit">
+        </form>
+
+    </div>
+
+    <div>
+       <p> {{ response |json}}</p>
+    </div>
+</section>
+</body>

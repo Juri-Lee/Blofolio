@@ -1,0 +1,106 @@
+<header>
+    <div class="col-md-12 container">
+        <div class=" row d-flex align-items-center" style="justify-content: space-between;">
+            <div class="d-flex align-items-center">
+
+                <a class="Header-Title" routerLink='../home'>Blofolio</a>
+            </div>
+            <div class="d-flex align-items-center">
+                <a style="background: none; height: 50px; width: 50px;" routerLink='../userpage'>
+                    <img [ngStyle]="{'opacity': isloggin ? '1' : '0.3' }" src='https://storage.cloud.google.com/blofolio.appspot.com/image/beta.png' style="height: 50px; width: 50px; opacity:1;" />
+                </a>
+            </div>
+            <div [ngSwitch]="isloggin" class="d-flex align-items-center">
+                <a class="Header-LogIn" *ngSwitchCase= "'true'"  routerLink='../logout' >Log out</a>
+                <a class="Header-LogIn"  *ngSwitchCase="'false'"  routerLink='../login'>Log in</a>  
+                <a class="Header-LogIn"  *ngSwitchCase="null"  routerLink='../login'>Log in</a> 
+        </div>
+        </div>
+    </div>
+</header>
+<section >
+    <div class="wrap">
+    <div class="container">
+    <div class="row">
+ <!--*************************Sign up Form************************-->         
+    <div class="col-md-6 border">
+    <form id="sign-up-form" class="container text-center"  #f="ngForm" (ngSubmit) = "onSubmit(f.value)" >
+        <h2 class="mt-4 mb-4">Sign Up</h2>
+        <Input  [(ngModel)]="userModel.name"  
+        required  
+        #name="ngModel" 
+        class="col-xs-12 col-md-12 mt-2 mb-2 form-control"
+        type="text" placeholder="Username" 
+        name="name"
+        ngDefaultControl />
+        
+        <Input [(ngModel)]="userModel.email"
+        required 
+        #email="ngModel"
+        type="email" 
+        class="col-xs-12 col-md-12 mt-2 mb-2 form-control"
+        placeholder="Email"
+        name="email"
+        ngDefaultControl />
+       
+        <Input  [(ngModel)]="userModel.pwd" 
+        required
+        #pwd="ngModel" 
+        type="password" 
+        class="col-xs-12 col-md-12 mt-2 mb-2 form-control"
+        name="pwd"  
+        placeholder="Password "
+        ngDefaultControl/>
+       
+        <Input 
+        [(ngModel)]="userModel.repwd" 
+        required
+        #repwd="ngModel" 
+        type="password" 
+        name="repwd" 
+        class="col-xs-12 col-md-12 mt-2 mb-2 form-control"
+        placeholder="Re-type password"
+        ngDefaultControl
+         />
+        
+        <p class="mt-1 mb-1">
+        <input type="submit" name = "submit" class=" mt-4 mb-4 btn btn-secondary" id="submit" value="Sign me up" />  
+        </p>
+    </form>
+
+    <p class=" mb-4 text-center"><a routerLink="../login" class="btn btn-light btn-sm"  id="toggleBtn">I already have an account</a></p>
+    </div>  <!--col-md-6 border-->
+    <!-- <div>
+        <p>{{validation(response[0][0])}}</p>
+    </div> -->
+
+ <!--********************************** OR *******************************-->     
+
+    <span class="center d-none d-sm-none d-md-block"
+        style="position: absolute; left: 50%; top: 65%;transform: translate(-50%,-50%);">
+        <p class="center text-center rounded-circle"
+            style="background-color: white; line-height:3em; border:1.5px solid #000; height:3em; width:3em;">
+            OR</p>
+    </span>
+
+ <!--*************************Social network button************************-->  
+
+    <div class="col-md-6 center">
+        <div class="container text-center">
+            <h2 class="mt-4 mb-4">Sign in with your social network</h2>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with facebook</a>
+            </p>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with twitter</a>
+            </p>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with Google+</a>
+            </p>
+        </div> <!--container text-center-->
+    </div> <!-- col-md-6 center-->
+
+    <div>
+        <p>{{ response| json}}</p>
+    </div>
+    </div><!--row-->
+</div><!-- container-->
+</div><!-- wrap -->
+    </section>

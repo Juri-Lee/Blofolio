@@ -1,0 +1,99 @@
+<body>
+
+    <section>
+  
+     <div class="searching">
+        <header>
+            <div class="col-md-12 container">
+                <div class=" row d-flex align-items-center" style="justify-content: space-between;">
+                    <div class="d-flex align-items-center">
+       
+                        <a class="Header-Title" routerLink='/home'>Blofolio</a>
+                    </div>
+                    <div class="d-flex align-items-center">
+                        <a style="background: none; height: 50px; width: 50px;" routerLink='../userpage'>
+                            <img [ngStyle]="{'opacity': isloggin ? '1' : '0.3' }" src='https://storage.cloud.google.com/blofolio.appspot.com/image/beta.png' style="height: 50px; width: 50px; opacity:1;" />
+                        </a>
+                    </div>
+                <div [ngSwitch]="isloggin" class="d-flex align-items-center">
+                        <a class="Header-LogIn" *ngSwitchCase= "'true'"   routerLink='../logout' >Log out</a>
+                        <a class="Header-LogIn"  *ngSwitchCase="'false'"  routerLink='../login'>Log in</a>  
+                        <a class="Header-LogIn"  *ngSwitchCase="null"  routerLink='../login'>Log in</a> 
+                </div>
+                </div>
+            </div>
+        </header>
+            <form class="container mt-5" #orderForm="ngForm" (ngSubmit) ="onSubmit(orderForm.value)">
+                <div class="form-group has-search" style="width:80%; margin: 0 auto; ">
+                    <span class="fa fa-search form-control-feedback"></span>
+                    <input [(ngModel)]="postModel.search"  
+                    required  
+                    #search="ngModel" 
+                    name ="search"
+                    ngdefaultControl
+                    type="text" class="form-control" placeholder="Search">
+                </div>
+  
+  
+                <div id="main-search-box">
+                <ul class="list-center top-bottom-margin-10" style="color:aliceblue;">
+                    <li>
+                        <input type="checkbox" value="travel" id="cb1" >
+                        <label for="cb1">Travel</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="food" id="cb1" >
+                        <label for="cb1">Food</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="Beauty" id="cb1" >
+                        <label for="cb1">Beauty</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="sport" id="cb1" >
+                        <label for="cb1">Sport</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="journal" id="cb1" >
+                        <label for="cb1">Journal</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="health" id="cb1" >
+                        <label for="cb1">Health</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="book" id="cb1" >
+                        <label for="cb1">Book</label>
+                    </li>
+                    <li>
+                        <input type="checkbox" value="others" id="cb1" >
+                        <label for="cb1">Others</label>
+                    </li>
+                </ul>
+                </div>
+                <input type='submit' class="btn btn-sm btn-light float-right" value="submit" style="display: none;">
+            </form>  
+          
+     
+  </div>
+  <div >
+    <h1 class="center mb-3">Searching post! </h1>
+    <h4 class="center mb-5">Your result is...</h4>
+    <div class="container">
+        <div>
+            <ul class="row">
+                <li class="col-md-3 float-left" *ngFor = "let responses of response">
+                    <a href="#">
+                        <img class="place-150by150 " alt="Micky mouse"
+                        src="https://via.placeholder.com/150">
+                    </a>
+                    <p>{{responses.title}}</p>
+                    <p>{{responses.subtitle}}</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+  </div>
+ 
+  </section>
+  </body>

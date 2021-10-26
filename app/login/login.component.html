@@ -1,0 +1,98 @@
+
+
+<body>
+    <header>
+        <div class="col-md-12 container">
+            <div class=" row d-flex align-items-center" style="justify-content: space-between;">
+                <div class="d-flex align-items-center">
+   
+                    <a class="Header-Title" routerLink='../home'>Blofolio</a>
+                </div>
+                <div class="d-flex align-items-center">
+                    <a  style="background: none; height: 50px; width: 50px;" routerLink='../userpage'>
+                        <img  [ngStyle]="{'opacity': isloggin ? '1' : '0.3' }" src='https://storage.cloud.google.com/blofolio.appspot.com/image/beta.png' style="height: 50px; width: 50px; opacity:1;" />
+                    </a>
+                </div>
+                <div [ngSwitch]="isloggin" class="d-flex align-items-center">
+                    <a class="Header-LogIn" *ngSwitchCase= "'true'"  routerLink='../logout' >Log out</a>
+                    <a class="Header-LogIn"  *ngSwitchCase="'false'"  routerLink='../login'>Log in</a>  
+                    <a class="Header-LogIn"  *ngSwitchCase="null"  routerLink='../login'>Log in</a> 
+            </div>
+            </div>
+        </div>
+    </header>
+<section >
+    <div class="wrap">
+    <div class="container">
+    <div class="row">
+    <div class="col-md-6 border">
+
+    <!--*************************Sign-in Form************************-->     
+
+    <div id = "sign-in-form" style="display:block; ">
+    <form class="container text-center"  #orderForm="ngForm" (ngSubmit) ="onSubmit(orderForm.value)">
+    <h2 class="mt-4 mb-4">Sign In</h2> 
+    <Input 
+    [(ngModel)]="checkModel.email"  
+    required  
+    #email="ngModel" 
+    class="col-xs-12 col-md-12 mt-2 mb-2 form-control" 
+    type="text" 
+    name = "email"  
+    placeholder="Email"
+    id="userEmail" 
+    ngDefaultControl />
+    <p class="errormessage" id="pw-mc-er"></p>
+    <Input  
+    [(ngModel)]="checkModel.pwd"  
+    required  
+    #pwd="ngModel" 
+    class="col-xs-12 col-md-12 mt-2 mb-2 form-control" 
+    name ="pwd" type="password" id="Userpassword"
+    placeholder="Password " 
+    ngDefaultControl />
+    <p class="errormessage" id="pw-mc-er"></p>
+    <p class="mt-1 mb-1">
+     <input type="submit" class="btn btn-secondary" name = "sign-in" id="sign-in" value= "Sign in"/>
+    </p>
+    </form>
+
+
+    </div>
+
+    <p class=" mb-4 text-center"><a routerLink="../account" class="btn btn-light btn-sm" id="toggleBtn">I don't have an account</a></p>
+    </div>
+
+ <!--********************************** OR *******************************-->     
+
+    <span class="center d-none d-sm-none d-md-block"
+        style="position: absolute; left: 50%; top: 65%;transform: translate(-50%,-50%);">
+        <p class="center text-center rounded-circle"
+            style="background-color: white; line-height:3em; border:1.5px solid #000; height:3em; width:3em;">
+            OR</p>
+    </span>
+
+ <!--*************************Social network button************************-->  
+
+    <div class="col-md-6 center">
+        <div class="container text-center">
+            <h2 class="mt-4 mb-4">Sign in with your social network</h2>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with facebook</a>
+            </p>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with twitter</a>
+            </p>
+            <p class="mt-4 mb-4"><a class="btn btn-secondary btn-block" href="#">Login with Google+</a>
+            </p>
+        </div>
+    </div>
+
+    </div>
+    <div>
+        <p style="color: #f00;
+        font-size: 13px; font-weight: bold;
+        text-align: left;">{{response.error}}</p>
+    </div>
+</div>
+</div>
+</section>
+</body>
